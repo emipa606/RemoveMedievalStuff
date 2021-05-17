@@ -1,4 +1,7 @@
 # Changelog for RemoveMedievalStuff
 
+1.0.1.0 - Seems ModLister.RoyaltyInstalled returns true even if Royalty is not active
+
+
 1.0.0.0 - First publish
 

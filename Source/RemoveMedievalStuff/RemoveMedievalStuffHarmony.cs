@@ -12,16 +12,23 @@ namespace RemoveMedievalStuff
         static RemoveMedievalStuffHarmony()
         {
             var harmony = new Harmony("Mlie.RemoveMedievalStuff");
-            harmony.Patch(AccessTools.Method(typeof(ThingSetMaker), "Generate", new[] {typeof(ThingSetMakerParams)}), new HarmonyMethod(typeof(RemoveMedievalStuffHarmony), nameof(ItemCollectionGeneratorGeneratePrefix)));
+            harmony.Patch(AccessTools.Method(typeof(ThingSetMaker), "Generate", new[] {typeof(ThingSetMakerParams)}),
+                new HarmonyMethod(typeof(RemoveMedievalStuffHarmony), nameof(ItemCollectionGeneratorGeneratePrefix)));
 
             // Log.Message("AddToTradeables");
-            harmony.Patch(AccessTools.Method(typeof(TradeDeal), "AddToTradeables"), new HarmonyMethod(typeof(RemoveMedievalStuffHarmony), nameof(PostCacheTradeables)));
+            harmony.Patch(AccessTools.Method(typeof(TradeDeal), "AddToTradeables"),
+                new HarmonyMethod(typeof(RemoveMedievalStuffHarmony), nameof(PostCacheTradeables)));
 
             // Log.Message("CanGenerate");
-            harmony.Patch(AccessTools.Method(typeof(ThingSetMakerUtility), nameof(ThingSetMakerUtility.CanGenerate)), null, new HarmonyMethod(typeof(RemoveMedievalStuffHarmony), nameof(ThingSetCleaner)));
-            harmony.Patch(AccessTools.Method(typeof(FactionManager), "FirstFactionOfDef", new[] {typeof(FactionDef)}), new HarmonyMethod(typeof(RemoveMedievalStuffHarmony), nameof(FactionManagerFirstFactionOfDefPrefix)));
+            harmony.Patch(AccessTools.Method(typeof(ThingSetMakerUtility), nameof(ThingSetMakerUtility.CanGenerate)),
+                null, new HarmonyMethod(typeof(RemoveMedievalStuffHarmony), nameof(ThingSetCleaner)));
+            harmony.Patch(AccessTools.Method(typeof(FactionManager), "FirstFactionOfDef", new[] {typeof(FactionDef)}),
+                new HarmonyMethod(typeof(RemoveMedievalStuffHarmony), nameof(FactionManagerFirstFactionOfDefPrefix)));
 
-            harmony.Patch(AccessTools.Method(typeof(BackCompatibility), "FactionManagerPostLoadInit", Array.Empty<Type>()), new HarmonyMethod(typeof(RemoveMedievalStuffHarmony), nameof(BackCompatibilityFactionManagerPostLoadInitPrefix)));
+            harmony.Patch(
+                AccessTools.Method(typeof(BackCompatibility), "FactionManagerPostLoadInit", Array.Empty<Type>()),
+                new HarmonyMethod(typeof(RemoveMedievalStuffHarmony),
+                    nameof(BackCompatibilityFactionManagerPostLoadInitPrefix)));
         }
 
         public static bool BackCompatibilityFactionManagerPostLoadInitPrefix()
@@ -31,7 +38,8 @@ namespace RemoveMedievalStuff
 
         public static bool FactionManagerFirstFactionOfDefPrefix(ref FactionDef facDef)
         {
-            return !ModStuff.Settings.LimitFactions || facDef == null || facDef.techLevel <= RemoveMedievalStuff.MAX_TECHLEVEL;
+            return !ModStuff.Settings.LimitFactions || facDef == null ||
+                   facDef.techLevel <= RemoveMedievalStuff.MAX_TECHLEVEL;
         }
 
         public static void ItemCollectionGeneratorGeneratePrefix(ref ThingSetMakerParams parms)
