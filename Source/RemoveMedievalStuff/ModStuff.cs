@@ -1,25 +1,29 @@
-﻿using UnityEngine;
+﻿using Mlie;
+using UnityEngine;
 using Verse;
 
-namespace RemoveMedievalStuff
+namespace RemoveMedievalStuff;
+
+public class ModStuff : Mod
 {
-    public class ModStuff : Mod
+    public static Settings Settings;
+    public static string currentVersion;
+
+    public ModStuff(ModContentPack content) : base(content)
     {
-        public static Settings Settings;
+        Settings = GetSettings<Settings>();
+        currentVersion =
+            VersionFromManifest.GetVersionFromModMetaData(
+                ModLister.GetActiveModWithIdentifier("Mlie.RemoveMedievalStuff"));
+    }
 
-        public ModStuff(ModContentPack content) : base(content)
-        {
-            Settings = GetSettings<Settings>();
-        }
+    public override string SettingsCategory()
+    {
+        return "Remove Medieval Stuff";
+    }
 
-        public override string SettingsCategory()
-        {
-            return "Remove Medieval Stuff";
-        }
-
-        public override void DoSettingsWindowContents(Rect canvas)
-        {
-            Settings.DoWindowContents(canvas);
-        }
+    public override void DoSettingsWindowContents(Rect canvas)
+    {
+        Settings.DoWindowContents(canvas);
     }
 }
