@@ -2,5 +2,14 @@
   "Continued": false,
   "CanAdd": "0",
   "CanRemove": "0",
-  "PreviewVersion": "1.5"
+  "PreviewVersion": "1.6",
+  "LastXmlCleaning": "2025-07-04T23:08:58.201618+02:00",
+  "SocialImageSet": true,
+  "FundingSet": true,
+  "Patches": false,
+  "Defs": false,
+  "Assemblies": true,
+  "LinesOfCode": 13068.0,
+  "LinesOfXML": 0,
+  "SearchTags": " lord of the rims"
 }

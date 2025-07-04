@@ -17,32 +17,32 @@ public class Settings : ModSettings
 
     public void DoWindowContents(Rect canvas)
     {
-        var gap = 8f;
-        var listing_Standard = new Listing_Standard { ColumnWidth = canvas.width };
-        listing_Standard.Begin(canvas);
-        listing_Standard.Gap(gap);
-        listing_Standard.CheckboxLabeled("ReMe.Items".Translate(), ref LimitItems,
+        const float gap = 8f;
+        var listingStandard = new Listing_Standard { ColumnWidth = canvas.width };
+        listingStandard.Begin(canvas);
+        listingStandard.Gap(gap);
+        listingStandard.CheckboxLabeled("ReMe.Items".Translate(), ref LimitItems,
             "ReMe.Items.Tooltip".Translate());
-        listing_Standard.CheckboxLabeled("ReMe.Research".Translate(), ref LimitResearch,
+        listingStandard.CheckboxLabeled("ReMe.Research".Translate(), ref LimitResearch,
             "ReMe.Research.Tooltip".Translate());
-        listing_Standard.CheckboxLabeled("ReMe.Faction".Translate(), ref LimitFactions,
+        listingStandard.CheckboxLabeled("ReMe.Faction".Translate(), ref LimitFactions,
             "ReMe.Faction.Tooltip".Translate());
-        listing_Standard.CheckboxLabeled("ReMe.Pawnkind".Translate(), ref LimitPawns,
+        listingStandard.CheckboxLabeled("ReMe.Pawnkind".Translate(), ref LimitPawns,
             "ReMe.Pawnkind.Tooltip".Translate());
-        listing_Standard.Gap(gap);
-        listing_Standard.CheckboxLabeled("ReMe.Log".Translate(), ref LogRemovals,
+        listingStandard.Gap(gap);
+        listingStandard.CheckboxLabeled("ReMe.Log".Translate(), ref LogRemovals,
             "ReMe.Log.Tooltip".Translate());
-        listing_Standard.Gap(gap);
-        listing_Standard.Label("ReMe.Restart".Translate());
-        if (ModStuff.currentVersion != null)
+        listingStandard.Gap(gap);
+        listingStandard.Label("ReMe.Restart".Translate());
+        if (ModStuff.CurrentVersion != null)
         {
-            listing_Standard.Gap();
+            listingStandard.Gap();
             GUI.contentColor = Color.gray;
-            listing_Standard.Label("ReMe.CurrentModVersion".Translate(ModStuff.currentVersion));
+            listingStandard.Label("ReMe.CurrentModVersion".Translate(ModStuff.CurrentVersion));
             GUI.contentColor = Color.white;
         }
 
-        listing_Standard.End();
+        listingStandard.End();
     }
 
     public override void ExposeData()
