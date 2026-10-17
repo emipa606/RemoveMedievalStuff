@@ -46,12 +46,9 @@ public static class RemoveMedievalStuff
         foreach (var thing in from thing in Things where thing.tradeTags != null select thing)
         {
             var tags = thing.tradeTags.ToArray();
-            foreach (var tag in tags)
+            foreach (var tag in tags.Where(tag => tag.StartsWith("CE_AutoEnableCrafting")))
             {
-                if (tag.StartsWith("CE_AutoEnableCrafting"))
-                {
-                    thing.tradeTags.Remove(tag);
-                }
+                thing.tradeTags.Remove(tag);
             }
         }
 
